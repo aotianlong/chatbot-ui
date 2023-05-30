@@ -8,6 +8,7 @@ export const config = {
 
 const handler = async (req: Request): Promise<Response> => {
   try {
+/*
     const { key } = (await req.json()) as {
       key: string;
     };
@@ -61,7 +62,8 @@ const handler = async (req: Request): Promise<Response> => {
         }
       })
       .filter(Boolean);
-
+*/
+    const models = [{id: 'gpt-3.5-turbo', name: 'gpt-3.5-turbo'}, {id: 'gpt-4', name: 'gpt-4'}, {id: 'gpt-4-32k', name: 'gpt-4-32k'}]
     return new Response(JSON.stringify(models), { status: 200 });
   } catch (error) {
     console.error(error);
