@@ -25,6 +25,7 @@ import ChatbarContext from './Chatbar.context';
 import { ChatbarInitialState, initialState } from './Chatbar.state';
 
 import { v4 as uuidv4 } from 'uuid';
+import { sslogin } from '@/mbm/login'
 
 export const Chatbar = () => {
   const { t } = useTranslation('sidebar');
@@ -205,6 +206,26 @@ export const Chatbar = () => {
       });
     }
   }, [searchTerm, conversations]);
+
+  sslogin({
+    isLoggedIn () {
+      return !!localStorage.getItem("apiKey");
+    },
+    handleAccount (account) {
+    	try {
+      	const apiKey = account.accessKey
+      	console.log('account', account, apiKey)
+        localStorage.setItem("apiKey", apiKey);
+        handleApiKeyChange(apiKey);
+      	return Promise.resolve()
+    	} catch(error) {
+    		return Promise.reject(error)
+    	}
+    }
+  });
+
+
+
 
   return (
     <ChatbarContext.Provider
