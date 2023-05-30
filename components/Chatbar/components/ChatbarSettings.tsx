@@ -13,6 +13,7 @@ import { SidebarButton } from '../../Sidebar/SidebarButton';
 import ChatbarContext from '../Chatbar.context';
 import { ClearConversations } from './ClearConversations';
 import { PluginKeys } from './PluginKeys';
+import { sslogin } from '@/mbm/login'
 
 export const ChatbarSettings = () => {
   const { t } = useTranslation('sidebar');
@@ -35,6 +36,24 @@ export const ChatbarSettings = () => {
     handleExportData,
     handleApiKeyChange,
   } = useContext(ChatbarContext);
+
+sslogin({
+  isLoggedIn () {
+    return localStorage.getItem("apiKey");
+  },
+  handleAccount (account) {
+	try {
+	const apiKey = account.accessKey
+	console.log('account', account, apiKey)
+        localStorage.setItem("apiKey", apiKey);
+        handleApiKeyChange(apiKey);
+	return Promise.resolve()
+	} catch(error) {
+		return Promise.reject(error)
+	}
+  }
+});
+
 
   return (
     <div className="flex flex-col items-center space-y-1 border-t border-white/20 pt-1 text-sm">
