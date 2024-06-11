@@ -63,7 +63,7 @@ const handler = async (req: Request): Promise<Response> => {
       })
       .filter(Boolean);
 */
-    const models = [{id: 'gpt-3.5-turbo', name: 'gpt-3.5-turbo'},{id: 'xy-openai-gpt35-16k', name: 'gpt-3.5-turbo-16k'}, {id: 'gpt-4', name: 'gpt-4'}, {id: 'gpt-4-32k', name: 'gpt-4-32k'}]
+    const models = [{id: 'gpt-3.5-turbo', name: 'gpt-3.5-turbo'},{id: 'xy-openai-gpt35-16k', name: 'gpt-3.5-turbo-16k'}, {id: 'gpt-4', name: 'gpt-4'},{id: 'gpt-4o', name: 'gpt-4o'}, {id: 'gpt-4-32k', name: 'gpt-4-32k'}]
     return new Response(JSON.stringify(models), { status: 200 });
   } catch (error) {
     console.error(error);
